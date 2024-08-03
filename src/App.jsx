@@ -169,10 +169,50 @@
 
 // export default App;
 
-import FeedbackForm from './components/FeedbackForm/FeedbackForm';
+// import FeedbackForm from './components/FeedbackForm/FeedbackForm';
+
+// const App = () => {
+//   return <FeedbackForm />;
+// };
+
+// export default App;
+
+import { useState } from 'react';
+import ArticleList from './components/ArticleList/ArticleList';
+import { BulletList } from 'react-content-loader';
+import SearchForm from './components/SearchForm/SearchForm.jsx';
+import { fetchArticlesWithTopic } from './articles-api.js';
 
 const App = () => {
-  return <FeedbackForm />;
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSearch = async topic => {
+    try {
+      // setArticles([]);
+      setError(false);
+      setLoading(true);
+      const data = await fetchArticlesWithTopic(topic);
+      setArticles(data);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Latest articles</h1>
+      <SearchForm onSearch={handleSearch} />
+      {loading && <BulletList />}
+      {error && (
+        <p>Whoops, something went wrong! Please try reloading this page!</p>
+      )}
+      {articles.length > 0 && <ArticleList items={articles} />}
+    </div>
+  );
 };
 
 export default App;
