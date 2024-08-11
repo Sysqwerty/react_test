@@ -177,42 +177,70 @@
 
 // export default App;
 
-import { useState } from 'react';
-import ArticleList from './components/ArticleList/ArticleList';
-import { BulletList } from 'react-content-loader';
-import SearchForm from './components/SearchForm/SearchForm.jsx';
-import { fetchArticlesWithTopic } from './articles-api.js';
+// import { useState } from 'react';
+// import ArticleList from './components/ArticleList/ArticleList';
+// import { BulletList } from 'react-content-loader';
+// import SearchForm from './components/SearchForm/SearchForm.jsx';
+// import { fetchArticlesWithTopic } from './articles-api.js';
 
-const App = () => {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+// const App = () => {
+//   const [articles, setArticles] = useState([]);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(false);
 
-  const handleSearch = async topic => {
-    try {
-      // setArticles([]);
-      setError(false);
-      setLoading(true);
-      const data = await fetchArticlesWithTopic(topic);
-      setArticles(data);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+//   const handleSearch = async topic => {
+//     try {
+//       // setArticles([]);
+//       setError(false);
+//       setLoading(true);
+//       const data = await fetchArticlesWithTopic(topic);
+//       setArticles(data);
+//     } catch (error) {
+//       setError(true);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>Latest articles</h1>
+//       <SearchForm onSearch={handleSearch} />
+//       {loading && <BulletList />}
+//       {error && (
+//         <p>Whoops, something went wrong! Please try reloading this page!</p>
+//       )}
+//       {articles.length > 0 && <ArticleList items={articles} />}
+//     </div>
+//   );
+// };
+
+// export default App;
+
+import { useRef } from 'react';
+
+const Player = ({ source }) => {
+  const playerRef = useRef();
+
+  const play = () => playerRef.current.play();
+
+  const pause = () => playerRef.current.pause();
 
   return (
     <div>
-      <h1>Latest articles</h1>
-      <SearchForm onSearch={handleSearch} />
-      {loading && <BulletList />}
-      {error && (
-        <p>Whoops, something went wrong! Please try reloading this page!</p>
-      )}
-      {articles.length > 0 && <ArticleList items={articles} />}
+      <video ref={playerRef} src={source}>
+        Sorry, your browser does not support embedded videos.
+      </video>
+      <div>
+        <button onClick={play}>Play</button>
+        <button onClick={pause}>Pause</button>
+      </div>
     </div>
   );
+};
+
+const App = () => {
+  return <Player source="http://media.w3.org/2010/05/sintel/trailer.mp4" />;
 };
 
 export default App;
