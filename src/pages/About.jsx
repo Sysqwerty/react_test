@@ -1,3 +1,5 @@
+import { Link, Outlet } from 'react-router-dom';
+
 const About = () => {
   return (
     <main>
@@ -13,8 +15,20 @@ const About = () => {
         praesentium totam ducimus similique asperiores culpa, eius amet
         repudiandae quam ut. Architecto commodi, tempore ut nostrum voluptas
         dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
-        eaque voluptatibus eveniet error?
+        eaque voluptatibus eveniet error, nulla rem iusto?
       </p>
+      <ul>
+        <li>
+          <Link to="mission">Read about our mission</Link>
+        </li>
+        <li>
+          <Link to="team">Get to know the team</Link>
+        </li>
+        <li>
+          <Link to="reviews">Go through the reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
     </main>
   );
 };
