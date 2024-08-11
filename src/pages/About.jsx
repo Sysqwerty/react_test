@@ -13,7 +13,7 @@ const About = () => {
         praesentium totam ducimus similique asperiores culpa, eius amet
         repudiandae quam ut. Architecto commodi, tempore ut nostrum voluptas
         dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
-        eaque voluptatibus eveniet error, nulla rem iusto?
+        eaque voluptatibus eveniet error?
       </p>
     </main>
   );
