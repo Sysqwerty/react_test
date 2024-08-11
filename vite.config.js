@@ -7,5 +7,11 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
-  base: '/react_test/',
+  resolve: {
+    alias: {
+      '@': '/src',
+      '@components': '/src/components',
+      '@pages': '/src/pages',
+    },
+  },
 });
