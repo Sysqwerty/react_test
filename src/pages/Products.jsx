@@ -14,7 +14,9 @@ const Products = () => {
 
   const updateQueryString = name => {
     const nextParams = name !== '' ? { name } : {};
-    setSearchParams(nextParams);
+
+    searchParams.set(nextParams);
+    setSearchParams(searchParams);
   };
 
   return (
