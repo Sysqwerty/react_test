@@ -24,7 +24,7 @@ export const RegisterForm = () => {
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
       <label className={css.label}>
         Username
-        <input type="text" name="name" />
+        <input type="text" name="name" autoFocus />
       </label>
       <label className={css.label}>
         Email
